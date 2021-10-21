@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "959879528240",
+    "firebase_url": "https://slime-adventure-2d-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "slime-adventure-2d",
+    "storage_bucket": "slime-adventure-2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:959879528240:android:e94ca738cfa2d7e89f52f5",
+        "android_client_info": {
+          "package_name": "com.KaizenGameProduction.SlimeAdventure2D"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "959879528240-uggpsce8catp6ipspr3ldpnb18etlfpr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWTtDU1xGK_fcXKuVg_QhnDMpbhcUPs_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "959879528240-uggpsce8catp6ipspr3ldpnb18etlfpr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,602 @@
+fileFormatVersion: 2
+guid: 1d16c714e522d1e4688ade3ea89d7721
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6836950011512273309
+    second: gateSmokeHorizontal1_0
+  - first:
+      213: -7292188579003681938
+    second: gateSmokeHorizontal1_1
+  - first:
+      213: 3723619466106529462
+    second: gateSmokeHorizontal1_2
+  - first:
+      213: 7716333353251263924
+    second: gateSmokeHorizontal1_3
+  - first:
+      213: 3467695590026126870
+    second: gateSmokeHorizontal1_4
+  - first:
+      213: -4708144229805932636
+    second: gateSmokeHorizontal1_5
+  - first:
+      213: -6126514142263353927
+    second: gateSmokeHorizontal1_6
+  - first:
+      213: 8756839447589876946
+    second: gateSmokeHorizontal1_7
+  - first:
+      213: -8441809941405089408
+    second: gateSmokeHorizontal1_8
+  - first:
+      213: -429166507920552707
+    second: gateSmokeHorizontal1_9
+  - first:
+      213: 3565385983535564158
+    second: gateSmokeHorizontal1_10
+  - first:
+      213: 7767793042982577557
+    second: gateSmokeHorizontal1_11
+  - first:
+      213: 4366293579968470557
+    second: gateSmokeHorizontal1_12
+  - first:
+      213: -2319850658147119328
+    second: gateSmokeHorizontal1_13
+  - first:
+      213: -948263954163063283
+    second: gateSmokeHorizontal1_14
+  - first:
+      213: 4002423900463442241
+    second: gateSmokeHorizontal1_15
+  - first:
+      213: 73046683262123280
+    second: gateSmokeHorizontal1_16
+  - first:
+      213: -3036385502406423047
+    second: gateSmokeHorizontal1_17
+  - first:
+      213: -6217387930831842332
+    second: gateSmokeHorizontal1_18
+  - first:
+      213: -899310233395595253
+    second: gateSmokeHorizontal1_19
+  - first:
+      213: -7399285630483832182
+    second: gateSmokeHorizontal1_20
+  - first:
+      213: -978493961397168841
+    second: gateSmokeHorizontal1_21
+  - first:
+      213: 7331771668670615431
+    second: gateSmokeHorizontal1_22
+  - first:
+      213: -3293029324578000202
+    second: gateSmokeHorizontal1_23
+  - first:
+      213: 6870359310239466269
+    second: gateSmokeHorizontal1_24
+  - first:
+      213: -9163375179587036000
+    second: gateSmokeHorizontal1_25
+  - first:
+      213: -4064676842491312852
+    second: gateSmokeHorizontal1_26
+  - first:
+      213: -365521701938750745
+    second: gateSmokeHorizontal1_27
+  - first:
+      213: -6546973888062544026
+    second: gateSmokeHorizontal1_28
+  - first:
+      213: -3694276977106544861
+    second: gateSmokeHorizontal1_29
+  - first:
+      213: -3800159253919999919
+    second: gateSmokeHorizontal1_30
+  - first:
+      213: 4416988856676319995
+    second: gateSmokeHorizontal1_31
+  - first:
+      213: 7013035464715546367
+    second: gateSmokeHorizontal1_32
+  - first:
+      213: 6415712004003972618
+    second: gateSmokeHorizontal1_33
+  - first:
+      213: -2553539791311145193
+    second: gateSmokeHorizontal1_34
+  - first:
+      213: -8027342296987179156
+    second: gateSmokeHorizontal1_35
+  - first:
+      213: 6603725611736409394
+    second: gateSmokeHorizontal1_36
+  - first:
+      213: 1409491797774193016
+    second: gateSmokeHorizontal1_37
+  - first:
+      213: 828739655816009922
+    second: gateSmokeHorizontal1_0
+  - first:
+      213: 3307353281437778926
+    second: gateSmokeHorizontal1_1
+  - first:
+      213: -5217335032433945476
+    second: gateSmokeHorizontal1_2
+  - first:
+      213: -7492469598375350155
+    second: gateSmokeHorizontal1_3
+  - first:
+      213: 463149524146754978
+    second: gateSmokeHorizontal1_4
+  - first:
+      213: 6903552041321002191
+    second: gateSmokeHorizontal1_5
+  - first:
+      213: 4381872718107029868
+    second: gateSmokeHorizontal1_6
+  - first:
+      213: -740985881259601592
+    second: gateSmokeHorizontal1_7
+  - first:
+      213: -6541084388903089515
+    second: gateSmokeHorizontal1_8
+  - first:
+      213: -3654113194212026551
+    second: gateSmokeHorizontal1_9
+  - first:
+      213: 6303825230287297657
+    second: gateSmokeHorizontal1_10
+  - first:
+      213: 1149328980529432189
+    second: gateSmokeHorizontal1_11
+  - first:
+      213: -7196051900669413594
+    second: gateSmokeHorizontal1_12
+  - first:
+      213: 1293241028138486490
+    second: gateSmokeHorizontal1_13
+  - first:
+      213: 3534043655722066452
+    second: gateSmokeHorizontal1_14
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: gateSmokeHorizontal1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c8513c7356408b00800000000000000
+      internalID: 828739655816009922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gateSmokeHorizontal1_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee342de494416ed20800000000000000
+      internalID: 3307353281437778926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gateSmokeHorizontal1_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c74d29d3e6d4897b0800000000000000
+      internalID: -5217335032433945476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gateSmokeHorizontal1_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5707c6ad896650890800000000000000
+      internalID: -7492469598375350155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gateSmokeHorizontal1_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a598a0d9007d6600800000000000000
+      internalID: 463149524146754978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gateSmokeHorizontal1_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc47c5741085ecf50800000000000000
+      internalID: 6903552041321002191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gateSmokeHorizontal1_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c61bebd550a8fcc30800000000000000
+      internalID: 4381872718107029868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gateSmokeHorizontal1_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84111f3544d77b5f0800000000000000
+      internalID: -740985881259601592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gateSmokeHorizontal1_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59a049987666935a0800000000000000
+      internalID: -6541084388903089515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gateSmokeHorizontal1_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9479ce1096bf94dc0800000000000000
+      internalID: -3654113194212026551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gateSmokeHorizontal1_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97c5b69d5afab7750800000000000000
+      internalID: 6303825230287297657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gateSmokeHorizontal1_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d76c48e4e9c33ff00800000000000000
+      internalID: 1149328980529432189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gateSmokeHorizontal1_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62733533cec722c90800000000000000
+      internalID: -7196051900669413594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gateSmokeHorizontal1_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adac72bfcd382f110800000000000000
+      internalID: 1293241028138486490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gateSmokeHorizontal1_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41269001bf17b0130800000000000000
+      internalID: 3534043655722066452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
