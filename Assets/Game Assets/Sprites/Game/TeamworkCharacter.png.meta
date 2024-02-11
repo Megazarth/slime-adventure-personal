@@ -75,7 +75,7 @@ TextureImporter:
       213: 460442873872990594
     second: TeamworkCharacter_23
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -95,6 +95,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -104,8 +106,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -126,10 +128,14 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -169,6 +175,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -696,6 +714,31 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      TeamworkCharacter_0: 7778971190094983725
+      TeamworkCharacter_1: 5108649950859375294
+      TeamworkCharacter_10: -9150563853160564638
+      TeamworkCharacter_11: 1560768137827855794
+      TeamworkCharacter_12: 5700806740533166202
+      TeamworkCharacter_13: -7564016124906532180
+      TeamworkCharacter_14: -248355515062360550
+      TeamworkCharacter_15: -8971887670815553821
+      TeamworkCharacter_16: 6323947207356735133
+      TeamworkCharacter_17: -5431701763120251287
+      TeamworkCharacter_18: -1234239899023164463
+      TeamworkCharacter_19: -4146850528337113194
+      TeamworkCharacter_2: -8674045151973067106
+      TeamworkCharacter_20: 8383434468652332272
+      TeamworkCharacter_21: -6765452121761886700
+      TeamworkCharacter_22: -4466265627807531185
+      TeamworkCharacter_23: 460442873872990594
+      TeamworkCharacter_3: 4264176173678500754
+      TeamworkCharacter_4: -3007534927056404814
+      TeamworkCharacter_5: -8873078961868284083
+      TeamworkCharacter_6: -1464731781764555305
+      TeamworkCharacter_7: -8494627349814093623
+      TeamworkCharacter_8: 3538014216588849143
+      TeamworkCharacter_9: 1553998003890998059
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

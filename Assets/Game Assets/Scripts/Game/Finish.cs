@@ -1,48 +1,47 @@
 ﻿using DG.Tweening;
-using System;
 using UnityEngine;
 
 namespace Slime
 {
-    public abstract class Finish : MonoBehaviour
-    {
-        [SerializeField] private AudioClip playerEnterClip = null;
-        [SerializeField] private ParticleSystem auraParticleSystem = null;
-        private SpriteRenderer spriteRenderer;
+	public abstract class Finish : MonoBehaviour
+	{
+		[SerializeField] private ParticleSystem auraParticleSystem = null;
+		private SpriteRenderer spriteRenderer;
 
-        private Sequence sequence;
+		private Sequence sequence;
 
-        public Action onEnter;
+		protected ParticleSystem AuraParticleSystem { get => auraParticleSystem; }
 
-        public bool IsFinish { get; internal set; }
-        protected ParticleSystem AuraParticleSystem { get => auraParticleSystem; }
-        protected AudioClip PlayerEnterClip { get => playerEnterClip; }
+		public delegate void onPlayerEnter(Player player, Finish finish);
+		public onPlayerEnter onPlayerEnterEvent;
 
-        protected virtual void Awake()
-        {
-            spriteRenderer = GetComponent<SpriteRenderer>();
+		public bool IsFinish { get; protected set; }
 
-            sequence = DOTween.Sequence();
-            sequence.SetLoops(-1);
-            sequence.SetAutoKill(false);
+		protected virtual void Awake()
+		{
+			spriteRenderer = GetComponent<SpriteRenderer>();
 
-            sequence.Insert(0f, spriteRenderer.DOFade(0f, 1f).From(1f).SetEase(Ease.InOutSine));
-            sequence.Insert(1f, spriteRenderer.DOFade(1f, 1f).From(0f).SetEase(Ease.InOutSine));
-        }
+			sequence = DOTween.Sequence();
+			sequence.SetLoops(-1);
+			sequence.SetAutoKill(false);
 
-        protected virtual void Start()
-        {
-            auraParticleSystem.Stop();
-        }
+			sequence.Insert(0f, spriteRenderer.DOFade(0f, 1f).From(1f).SetEase(Ease.InOutSine));
+			sequence.Insert(1f, spriteRenderer.DOFade(1f, 1f).From(0f).SetEase(Ease.InOutSine));
+		}
 
-        protected virtual void OnDestroy()
-        {
-            sequence?.Kill();
-        }
+		protected virtual void Start()
+		{
+			auraParticleSystem.Stop();
+		}
 
-        protected virtual void OnTriggerEnter2D(Collider2D collision) { }
+		protected virtual void OnDestroy()
+		{
+			sequence?.Kill();
+		}
 
-        protected virtual void OnTriggerExit2D(Collider2D collision) { }
-    }
+		protected virtual void OnTriggerEnter2D(Collider2D collision) { }
+
+		protected virtual void OnTriggerExit2D(Collider2D collision) { }
+	}
 }
 

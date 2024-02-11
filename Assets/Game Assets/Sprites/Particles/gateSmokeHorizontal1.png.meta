@@ -162,7 +162,7 @@ TextureImporter:
       213: 3534043655722066452
     second: gateSmokeHorizontal1_14
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -182,6 +182,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -191,8 +193,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -213,10 +215,14 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -266,6 +272,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -285,7 +303,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 2c8513c7356408b00800000000000000
-      internalID: 828739655816009922
+      internalID: 6836950011512273309
       vertices: []
       indices: 
       edges: []
@@ -306,7 +324,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: ee342de494416ed20800000000000000
-      internalID: 3307353281437778926
+      internalID: -7292188579003681938
       vertices: []
       indices: 
       edges: []
@@ -327,7 +345,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: c74d29d3e6d4897b0800000000000000
-      internalID: -5217335032433945476
+      internalID: 3723619466106529462
       vertices: []
       indices: 
       edges: []
@@ -348,7 +366,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 5707c6ad896650890800000000000000
-      internalID: -7492469598375350155
+      internalID: 7716333353251263924
       vertices: []
       indices: 
       edges: []
@@ -369,7 +387,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 2a598a0d9007d6600800000000000000
-      internalID: 463149524146754978
+      internalID: 3467695590026126870
       vertices: []
       indices: 
       edges: []
@@ -390,7 +408,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: fc47c5741085ecf50800000000000000
-      internalID: 6903552041321002191
+      internalID: -4708144229805932636
       vertices: []
       indices: 
       edges: []
@@ -411,7 +429,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: c61bebd550a8fcc30800000000000000
-      internalID: 4381872718107029868
+      internalID: -6126514142263353927
       vertices: []
       indices: 
       edges: []
@@ -432,7 +450,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 84111f3544d77b5f0800000000000000
-      internalID: -740985881259601592
+      internalID: 8756839447589876946
       vertices: []
       indices: 
       edges: []
@@ -453,7 +471,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 59a049987666935a0800000000000000
-      internalID: -6541084388903089515
+      internalID: -8441809941405089408
       vertices: []
       indices: 
       edges: []
@@ -474,7 +492,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 9479ce1096bf94dc0800000000000000
-      internalID: -3654113194212026551
+      internalID: -429166507920552707
       vertices: []
       indices: 
       edges: []
@@ -495,7 +513,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 97c5b69d5afab7750800000000000000
-      internalID: 6303825230287297657
+      internalID: 3565385983535564158
       vertices: []
       indices: 
       edges: []
@@ -516,7 +534,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: d76c48e4e9c33ff00800000000000000
-      internalID: 1149328980529432189
+      internalID: 7767793042982577557
       vertices: []
       indices: 
       edges: []
@@ -537,7 +555,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 62733533cec722c90800000000000000
-      internalID: -7196051900669413594
+      internalID: 4366293579968470557
       vertices: []
       indices: 
       edges: []
@@ -558,7 +576,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: adac72bfcd382f110800000000000000
-      internalID: 1293241028138486490
+      internalID: -2319850658147119328
       vertices: []
       indices: 
       edges: []
@@ -579,7 +597,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 41269001bf17b0130800000000000000
-      internalID: 3534043655722066452
+      internalID: -948263954163063283
       vertices: []
       indices: 
       edges: []
@@ -594,6 +612,22 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      gateSmokeHorizontal1_0: 6836950011512273309
+      gateSmokeHorizontal1_1: -7292188579003681938
+      gateSmokeHorizontal1_10: 3565385983535564158
+      gateSmokeHorizontal1_11: 7767793042982577557
+      gateSmokeHorizontal1_12: 4366293579968470557
+      gateSmokeHorizontal1_13: -2319850658147119328
+      gateSmokeHorizontal1_14: -948263954163063283
+      gateSmokeHorizontal1_2: 3723619466106529462
+      gateSmokeHorizontal1_3: 7716333353251263924
+      gateSmokeHorizontal1_4: 3467695590026126870
+      gateSmokeHorizontal1_5: -4708144229805932636
+      gateSmokeHorizontal1_6: -6126514142263353927
+      gateSmokeHorizontal1_7: 8756839447589876946
+      gateSmokeHorizontal1_8: -8441809941405089408
+      gateSmokeHorizontal1_9: -429166507920552707
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

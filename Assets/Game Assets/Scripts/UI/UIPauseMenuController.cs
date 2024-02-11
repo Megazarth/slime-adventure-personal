@@ -7,141 +7,132 @@ using UnityEngine.UI;
 
 namespace Slime
 {
-    public class UIPauseMenuController : SceneSingletonComponent<UIPauseMenuController>
-    {
-        private const float AnimationDuration = 0.25f;
+	public class UIPauseMenuController : SceneSingletonComponent<UIPauseMenuController>
+	{
+		private const float AnimationDuration = 0.25f;
 
-        private Sequence sequence;
+		private Sequence sequence;
 
-        public Canvas canvas;
-        public CanvasGroup canvasGroup;
-        public RectTransform rectPanelLayout;
-        public TextMeshProUGUI textLevelNumber;
-        public TextMeshProUGUI textLevelTitle;
-        [Header("Button")]
-        public Toggle toggleMusic;
-        public Toggle toggleSFX;
+		public Canvas canvas;
+		public CanvasGroup canvasGroup;
+		public RectTransform rectPanelLayout;
+		public TextMeshProUGUI textLevelNumber;
+		public TextMeshProUGUI textLevelTitle;
+		[Header("Button")]
+		public Toggle toggleMusic;
+		public Toggle toggleSFX;
 
-        //Reference to currently opened level's LevelController object
-        public LevelController LevelController { get; set; }
+		protected override void Awake()
+		{
+			base.Awake();
+			canvas.enabled = false;
+		}
 
-        protected override void Awake()
-        {
-            base.Awake();
-            canvas.enabled = false;
-        }
+		private void OnDestroy()
+		{
+			sequence?.Kill();
+		}
 
-        private void OnDestroy()
-        {
-            sequence?.Kill();
-        }
-
-        private void Initialize()
-        {
-            toggleMusic.isOn = !AudioManager.Instance.IsMusicMuted;
-            toggleSFX.isOn = !AudioManager.Instance.IsSFXMuted;
+		private void Initialize()
+		{
+			toggleMusic.isOn = !AudioManager.Instance.IsMusicMuted;
+			toggleSFX.isOn = !AudioManager.Instance.IsSFXMuted;
 
 #if UNITY_EDITOR
-            if (GameManager.Instance.IsEditMode)
-                return;
+			if (GameManager.Instance.IsEditMode)
+				return;
 #endif
 
-            textLevelNumber.text = $"Level { GameManager.Instance.CurrentLevel.number }";
-            textLevelTitle.text = $"{ GameManager.Instance.CurrentCollection.name}";
-        }
+			textLevelNumber.text = $"Level { GameManager.Instance.CurrentLevel.number }";
+			textLevelTitle.text = $"{ GameManager.Instance.CurrentCollection.name}";
+		}
 
-        public void Show(Action onComplete = null)
-        {
-            GameManager.Instance.Pause();
+		public void Show(Action onComplete = null)
+		{
+			GameManager.Instance.Pause();
 
-            if (LevelController != null && LevelController.IsPlayerAlive)
-                InputManager.Instance.HideControls();
+			Initialize();
+			canvas.enabled = true;
 
-            Initialize();
-            canvas.enabled = true;
+			if (sequence == null)
+			{
+				InputBlocker.Instance.DisableInput();
+				sequence = DOTween.Sequence();
+				sequence.SetUpdate(true);
+				sequence.SetAutoKill(false);
 
-            if (sequence == null)
-            {
-                InputBlocker.Instance.DisableInput();
-                sequence = DOTween.Sequence();
-                sequence.SetUpdate(true);
-                sequence.SetAutoKill(false);
+				sequence.Insert(0f, rectPanelLayout.DOAnchorPosY(0f, AnimationDuration).From(Vector2.down * 100f).SetEase(Ease.OutSine));
+				sequence.Insert(0f, canvasGroup.DOFade(1f, AnimationDuration).From(0f));
+			}
+			else
+			{
+				sequence.Complete(true);
+				InputBlocker.Instance.DisableInput();
+				sequence.Restart();
+			}
 
-                sequence.Insert(0f, rectPanelLayout.DOAnchorPosY(0f, AnimationDuration).From(Vector2.down * 100f).SetEase(Ease.OutSine));
-                sequence.Insert(0f, canvasGroup.DOFade(1f, AnimationDuration).From(0f));
-            }
-            else
-            {
-                sequence.Complete(true);
-                InputBlocker.Instance.DisableInput();
-                sequence.Restart();
-            }
+			sequence.OnComplete(() =>
+			{
+				InputBlocker.Instance.EnableInput();
+				onComplete?.Invoke();
+			});
+		}
 
-            sequence.OnComplete(() =>
-            {
-                InputBlocker.Instance.EnableInput();
-                onComplete?.Invoke();
-            });
-        }
+		public void Hide(Action onComplete = null)
+		{
+			InputBlocker.Instance.DisableInput();
 
-        public void Hide(Action onComplete = null)
-        {
-            InputBlocker.Instance.DisableInput();
+			sequence.Complete(true);
+			sequence.onComplete = null;
+			sequence.SmoothRewind();
+			sequence.OnSmoothRewindCompleted(this, false, () =>
+			{
+				canvas.enabled = false;
+				GameManager.Instance.Play();
+				InputBlocker.Instance.EnableInput();
+				onComplete?.Invoke();
+			});
+		}
 
-            if (LevelController != null && LevelController.IsPlayerAlive)
-                InputManager.Instance.ShowControls();
+		public void ButtonMusic_OnClicked(bool state)
+		{
+			AudioManager.Instance.ToggleBGM(state);
+		}
 
-            sequence.Complete(true);
-            sequence.onComplete = null;
-            sequence.SmoothRewind();
-            sequence.OnSmoothRewindCompleted(this, false, () =>
-            {
-                canvas.enabled = false;
-                GameManager.Instance.Play();
-                InputBlocker.Instance.EnableInput();
-                onComplete?.Invoke();
-            });
-        }
+		public void ButtonSFX_OnClicked(bool state)
+		{
+			AudioManager.Instance.ToggleSFX(state);
+		}
 
-        public void ButtonMusic_OnClicked(bool state)
-        {
-            AudioManager.Instance.ToggleBGM(state);
-        }
+		public void Resume()
+		{
+			Hide(() =>
+			{
+				AudioManager.Instance.PlayBGM();
+			});
+		}
 
-        public void ButtonSFX_OnClicked(bool state)
-        {
-            AudioManager.Instance.ToggleSFX(state);
-        }
+		public void Retry()
+		{
+			GameAnalytics.Instance.TrackLevelRetry(GameManager.Instance.CurrentLevel.number);
+			GameManager.Instance.LevelExit();
 
-        public void Resume()
-        {
-            Hide(() =>
-            {
-                AudioManager.Instance.PlayBGM();
-            });
-        }
+			Hide(() =>
+			{
+				GameManager.Instance.LevelRetry(false);
+			});
+		}
 
-        public void Retry()
-        {
-            GameAnalytics.Instance.TrackLevelRetry(GameManager.Instance.CurrentLevel.number);
-            GameManager.Instance.LevelExit();
+		public void Quit()
+		{
+			GameManager.Instance.LevelExit();
 
-            Hide(() =>
-            {
-                GameManager.Instance.LevelRetry(false);
-            });
-        }
-
-        public void Quit()
-        {
-            GameManager.Instance.LevelExit();
-
-            Hide(() =>
-            {
-                GameManager.Instance.GoToStartScreen();
-            });
-        }
-    }
+			Hide(() =>
+			{
+				GameManager.Instance.GoToStartScreen();
+			});
+		}
+	}
 
 }
 

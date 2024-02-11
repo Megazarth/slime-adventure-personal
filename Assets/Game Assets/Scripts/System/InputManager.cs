@@ -3,37 +3,87 @@ using UnityEngine;
 
 namespace Slime
 {
-    public class InputManager : SceneSingletonComponent<InputManager>
-    {
-        private Canvas canvas;
+	public class InputManager : SceneSingletonComponent<InputManager>
+	{
+		private Canvas canvas;
 
-        public CustomJoystick joystickBlue;
-        public CustomJoystick joystickPink;
+		private bool enableInput;
 
-        protected override void Awake()
-        {
-            base.Awake();
-            canvas = GetComponentInChildren<Canvas>();
-            HideControls();
-        }
+		private PlayerBlue playerBlue;
+		private PlayerPink playerPink;
 
-        public void HideControls()
-        {
-            canvas.enabled = false;
-            Input.multiTouchEnabled = false;
+		public CustomJoystick joystickBlue;
+		public CustomJoystick joystickPink;
 
-            joystickBlue.enabled = false;
-            joystickPink.enabled = false;
-        }
+		protected override void Awake()
+		{
+			base.Awake();
+			canvas = GetComponentInChildren<Canvas>();
+			HideControls();
+		}
 
-        public void ShowControls()
-        {
-            canvas.enabled = true;
-            Input.multiTouchEnabled = true;
+		protected void Update()
+		{
+			if (!enableInput)
+				return;
 
-            joystickBlue.enabled = true;
-            joystickPink.enabled = true;
-        }
-    }
+			if (playerBlue != null)
+				playerBlue.UpdateInput(new Vector2(joystickBlue.Horizontal, joystickBlue.Vertical));
+
+			if (playerPink != null)
+				playerPink.UpdateInput(new Vector2(joystickPink.Horizontal, joystickPink.Vertical));
+		}
+
+		public void HideControls()
+		{
+			enableInput = false;
+
+			canvas.enabled = false;
+			Input.multiTouchEnabled = false;
+
+			joystickBlue.enabled = false;
+			joystickPink.enabled = false;
+		}
+
+		public void ShowControls()
+		{
+			enableInput = true;
+
+			canvas.enabled = true;
+			Input.multiTouchEnabled = true;
+
+			joystickBlue.enabled = true;
+			joystickPink.enabled = true;
+		}
+
+		public void AssignPlayer(Player player)
+		{
+			if (player is PlayerBlue playerBlue)
+				this.playerBlue = playerBlue;
+			if (player is PlayerPink playerPink)
+				this.playerPink = playerPink;
+		}
+
+		public void RemoveAllPlayers()
+		{
+			playerBlue = null;
+			playerPink = null;
+		}
+
+		public void SetSinglePlayerMode()
+		{
+
+		}
+
+		public void SetMultiplayerModeHostIsPlayerBlue()
+		{
+
+		}
+
+		public void SetMultiplayerModeHostIsPlayerPink()
+		{
+
+		}
+	}
 
 }

@@ -75,7 +75,7 @@ TextureImporter:
       213: -1503313134711615475
     second: slimeDeath_23
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -95,6 +95,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -104,8 +106,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -126,10 +128,14 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -169,6 +175,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -696,6 +714,31 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      slimeDeath_0: 6647145547830064970
+      slimeDeath_1: -2634491739612336050
+      slimeDeath_10: 8876905532394954914
+      slimeDeath_11: -4407455179458411997
+      slimeDeath_12: -5067143805741690959
+      slimeDeath_13: 8573182639483931314
+      slimeDeath_14: 8249661247312504372
+      slimeDeath_15: -3166388242133850464
+      slimeDeath_16: -3832057310230847665
+      slimeDeath_17: -4770528716250030471
+      slimeDeath_18: 1501167565219731982
+      slimeDeath_19: 8493590251792766277
+      slimeDeath_2: 3917161169063145328
+      slimeDeath_20: 6651204455303902067
+      slimeDeath_21: -4760302674879206812
+      slimeDeath_22: 5930568115483135789
+      slimeDeath_23: -1503313134711615475
+      slimeDeath_3: -6216176762158897466
+      slimeDeath_4: -8255200976834831300
+      slimeDeath_5: -5621376698110953636
+      slimeDeath_6: -6293171294835661013
+      slimeDeath_7: 1677507907474846513
+      slimeDeath_8: -6374548448516556032
+      slimeDeath_9: -8338333969697541019
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
