@@ -8,6 +8,7 @@ namespace Slime
 		private Canvas canvas;
 
 		private bool enableInput;
+		private bool multiplayerMode;
 
 		private PlayerBlue playerBlue;
 		private PlayerPink playerPink;
@@ -24,6 +25,9 @@ namespace Slime
 
 		protected void Update()
 		{
+			if (multiplayerMode)
+				return;
+
 			if (!enableInput)
 				return;
 
@@ -80,19 +84,36 @@ namespace Slime
 			playerPink = null;
 		}
 
+		public void SetMultiplayerMode(bool state)
+		{
+			multiplayerMode = state;
+		}
+
 		public void SetSinglePlayerMode()
 		{
+			joystickBlue.gameObject.SetActive(true);
+			joystickPink.gameObject.SetActive(true);
 
+			joystickBlue.ResetAnchor();
+			joystickPink.ResetAnchor();
 		}
 
 		public void SetMultiplayerModeHostIsPlayerBlue()
 		{
+			joystickBlue.gameObject.SetActive(true);
+			joystickPink.gameObject.SetActive(true);
+			joystickPink.gameObject.SetActive(false);
 
+			joystickBlue.SetAnchorForMultiplayer();
 		}
 
 		public void SetMultiplayerModeHostIsPlayerPink()
 		{
+			joystickBlue.gameObject.SetActive(true);
+			joystickPink.gameObject.SetActive(true);
+			joystickBlue.gameObject.SetActive(false);
 
+			joystickPink.SetAnchorForMultiplayer();
 		}
 	}
 
