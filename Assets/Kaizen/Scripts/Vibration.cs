@@ -2,8 +2,8 @@
 
 namespace Kaizen
 {
-    public static class Vibration
-    {
+	public static class Vibration
+	{
 #if UNITY_ANDROID && !UNITY_EDITOR
         private static string VibrateID = "vibrate";
         private static long[] tapticDuration = new long[] { 100, 300, 500 };
@@ -34,29 +34,29 @@ namespace Kaizen
             power = Mathf.Clamp(power - 1, 0, 2);
             vibrator.Call(VibrateID, tapticDuration[power]);
         }
-#elif UNITY_EDITOR
+#else
 
 
 
-        public static void Initialize()
-        {
-            Debug.Log($"UNITY EDITOR: Vibration class initialized.");
-        }
+		public static void Initialize()
+		{
+			Debug.Log($"UNITY EDITOR: Vibration class initialized.");
+		}
 
-        public static void Vibrate(long milliseconds)
-        {
-            Debug.Log($"UNITY EDITOR: Vibration called for {milliseconds} ms.");
-        }
+		public static void Vibrate(long milliseconds)
+		{
+			Debug.Log($"UNITY EDITOR: Vibration called for {milliseconds} ms.");
+		}
 
-        public static void Vibrate(long[] pattern, int repeat)
-        {
-            Debug.Log($"UNITY EDITOR: Vibration pattern called. Pattern: {pattern.ToString()}. Repeat: {repeat}");
-        }
+		public static void Vibrate(long[] pattern, int repeat)
+		{
+			Debug.Log($"UNITY EDITOR: Vibration pattern called. Pattern: {pattern.ToString()}. Repeat: {repeat}");
+		}
 
-        public static void TriggerTaptic(int power)
-        {
-            Debug.Log($"UNITY EDITOR: Taptic triggered. Power: {power}.");
-        }
+		public static void TriggerTaptic(int power)
+		{
+			Debug.Log($"UNITY EDITOR: Taptic triggered. Power: {power}.");
+		}
 #endif
-    }
+	}
 }

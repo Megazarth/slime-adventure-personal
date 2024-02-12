@@ -28,10 +28,20 @@ namespace Slime
 				return;
 
 			if (playerBlue != null)
-				playerBlue.UpdateInput(new Vector2(joystickBlue.Horizontal, joystickBlue.Vertical));
+				playerBlue.UpdateInput(GetJoystickBlueDirection());
 
 			if (playerPink != null)
-				playerPink.UpdateInput(new Vector2(joystickPink.Horizontal, joystickPink.Vertical));
+				playerPink.UpdateInput(GetJoystickPinkDirection());
+		}
+
+		public Vector2 GetJoystickBlueDirection()
+		{
+			return new Vector2(joystickBlue.Horizontal, joystickBlue.Vertical);
+		}
+
+		public Vector2 GetJoystickPinkDirection()
+		{
+			return new Vector2(joystickPink.Horizontal, joystickPink.Vertical);
 		}
 
 		public void HideControls()

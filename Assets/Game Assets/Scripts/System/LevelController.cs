@@ -94,6 +94,8 @@ namespace Slime
 			{
 				enemy.SetPlayerReferences(players);
 			}
+
+			GameManager.Instance.NotifyLevelDoneLoading();
 		}
 
 		private void OnPlayerEnterFinish(Player player, Finish finish)

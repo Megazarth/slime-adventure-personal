@@ -43,8 +43,8 @@ namespace Slime
 
 		private void OnDestroy()
 		{
-			SceneManager.sceneLoaded -= OnSceneLoaded;
-			SceneManager.sceneUnloaded -= OnSceneUnloaded;
+			AppManager.Instance.onSceneLoadedEvent -= OnSceneLoaded;
+			AppManager.Instance.onSceneUnloadedEvent -= OnSceneUnloaded;
 		}
 
 		public void Initialize()
@@ -85,20 +85,20 @@ namespace Slime
 					}));
 				}
 
-				SceneManager.sceneLoaded += OnSceneLoaded;
-				SceneManager.sceneUnloaded += OnSceneUnloaded;
+				AppManager.Instance.onSceneLoadedEvent += OnSceneLoaded;
+				AppManager.Instance.onSceneUnloadedEvent += OnSceneUnloaded;
 
 				return;
 			}
 #endif
 
 #if DEVELOPMENT_BUILD
-            SceneManager.LoadScene("Debug", LoadSceneMode.Additive);
+            AppManager.Instance.LoadSceneAsync("Debug", LoadSceneMode.Additive);
 #endif
 			State = GameState.Initialization;
 
-			SceneManager.sceneLoaded += OnSceneLoaded;
-			SceneManager.sceneUnloaded += OnSceneUnloaded;
+			AppManager.Instance.onSceneLoadedEvent += OnSceneLoaded;
+			AppManager.Instance.onSceneUnloadedEvent += OnSceneUnloaded;
 
 			StartCoroutine(LoadSceneEnumerator(Global.SceneMainMenu, () =>
 			{
@@ -231,12 +231,20 @@ namespace Slime
 
 		public void LevelRetry(bool showInterstitial = true)
 		{
-			if (isRetrying)
+			if (State == GameState.Preparation)
 				return;
 
-			isRetrying = true;
+			LoadLevel(CurrentLevel, showInterstitial);
+		}
 
-			LoadLevel(CurrentLevel, () => isRetrying = false, showInterstitial);
+		public void NotifyLevelDoneLoading()
+		{
+			TransitionAnimator.Instance.Hide(() =>
+			{
+				InputManager.Instance.ShowControls();
+				State = GameState.Start;
+				levelTimestamp = Time.time;
+			});
 		}
 
 		public void GoToStartScreen()
@@ -245,7 +253,7 @@ namespace Slime
 			LoadScene(Global.SceneMainMenu, () => UIPauseMenuController.Instance.canvas.enabled = false);
 		}
 
-		private void LoadLevel(Level level, Action onComplete = null, bool showInterstitial = false)
+		private void LoadLevel(Level level, bool showInterstitial = false)
 		{
 			var scenename = Path.GetFileNameWithoutExtension(level.scene);
 
@@ -257,22 +265,8 @@ namespace Slime
 				if (showInterstitial)
 					AdsManager.Instance.ShowIntersitial();
 
-				StartCoroutine(LoadSceneEnumerator(scenename, () =>
-				{
-					OnSceneLoaded();
-				}));
+				StartCoroutine(LoadSceneEnumerator(scenename));
 			});
-
-			void OnSceneLoaded()
-			{
-				TransitionAnimator.Instance.Hide(() =>
-				{
-					onComplete?.Invoke();
-					InputManager.Instance.ShowControls();
-					State = GameState.Start;
-					levelTimestamp = Time.time;
-				});
-			}
 		}
 
 		private void LoadScene(string sceneName, Action onTransitionShown = null, Action onTransitionHidden = null)
@@ -291,17 +285,21 @@ namespace Slime
 		{
 			if (currentLoadedScene != null && currentLoadedScene.isLoaded)
 			{
-				var unloadSceneOperation = SceneManager.UnloadSceneAsync(currentLoadedScene);
-				while (!unloadSceneOperation.isDone)
 				{
-					yield return null;
+					var unloadSceneOperation = AppManager.Instance.UnloadSceneAsync(currentLoadedScene.name);
+					while (!unloadSceneOperation.isDone)
+					{
+						yield return null;
+					}
 				}
 			}
 
-			var loadSceneOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-			while (!loadSceneOperation.isDone)
 			{
-				yield return null;
+				var loadSceneOperation = AppManager.Instance.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+				while (!loadSceneOperation.isDone)
+				{
+					yield return null;
+				}
 			}
 
 			onComplete?.Invoke();
