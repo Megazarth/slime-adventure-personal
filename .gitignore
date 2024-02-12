@@ -67,3 +67,5 @@ crashlytics-build.properties
 
 # Debian packages
 *.deb
+
+SSH Key.txt
