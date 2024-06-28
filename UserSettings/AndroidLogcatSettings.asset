@@ -1,47 +1,17 @@
 {
-    "m_SelectedDeviceId": "a120237b",
-    "m_SelectedPackage": {
-        "deviceId": "a120237b",
-        "name": "com.KaizenGameProduction.SlimeAdventure2D",
-        "processId": 6856,
+    "m_SelectedDeviceId": "78f740a8",
+    "m_SelectedProcess": {
+        "deviceId": "",
+        "name": "",
+        "processId": 0,
         "exited": false
     },
     "m_SelectedPriority": 0,
-    "m_KnownPackagesForSerialization": [
+    "m_KnownProcessesForSerialization": [
         {
-            "deviceId": "a120237b",
-            "name": "com.KaizenGameProduction.SlimeAdventure2D",
-            "processId": 30773,
-            "exited": true
-        },
-        {
-            "deviceId": "a120237b",
-            "name": "com.KaizenGameProduction.SlimeAdventure2D",
-            "processId": 32509,
-            "exited": true
-        },
-        {
-            "deviceId": "a120237b",
-            "name": "com.KaizenGameProduction.SlimeAdventure2D",
-            "processId": 1950,
-            "exited": true
-        },
-        {
-            "deviceId": "a120237b",
-            "name": "com.KaizenGameProduction.SlimeAdventure2D",
-            "processId": 3913,
-            "exited": true
-        },
-        {
-            "deviceId": "a120237b",
-            "name": "com.KaizenGameProduction.SlimeAdventure2D",
-            "processId": 4989,
-            "exited": true
-        },
-        {
-            "deviceId": "a120237b",
-            "name": "com.KaizenGameProduction.SlimeAdventure2D",
-            "processId": 6856,
+            "deviceId": "78f740a8",
+            "name": "com.android.vending",
+            "processId": 20363,
             "exited": false
         }
     ],
@@ -77,8 +47,11 @@
             }
         ]
     },
+    "m_ExtraWindowState": {
+        "Type": 0,
+        "Height": 0.0
+    },
     "m_MemoryViewerState": {
-        "MemoryWindowHeight": 300.0,
         "MemoryWindowWidth": 170.0,
         "MemoryTypeEnabled": [
             true,
@@ -93,9 +66,35 @@
             true
         ],
         "MemoryGroup": 2,
-        "Behavior": 0
+        "AutoCapture": true
     },
-    "m_Filter": "",
-    "m_FilterIsRegularExpression": false,
-    "m_SymbolPaths": []
+    "m_FilterOptions": {
+        "m_Filter": "slim",
+        "m_UseRegularExpressions": false,
+        "m_MatchCase": false
+    },
+    "m_SymbolPaths": [],
+    "m_CaptureVideoSettings": {
+        "TimeLimitEnabled": false,
+        "TimeLimit": 180,
+        "VideoSizeEnabled": false,
+        "VideoSizeX": 1280,
+        "VideoSizeY": 720,
+        "BitRateEnabled": false,
+        "BitRateK": 20000,
+        "DisplayIdEnabled": false,
+        "DisplayId": ""
+    },
+    "m_InputSettings": {
+        "ShiftModifier": false,
+        "SendText": "",
+        "PosixKillSignal": 0,
+        "TargetProcess": {
+            "deviceId": "",
+            "name": "",
+            "processId": 0,
+            "exited": false
+        }
+    },
+    "m_AutoScroll": 0
 }
