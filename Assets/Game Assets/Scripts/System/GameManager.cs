@@ -49,7 +49,8 @@ namespace Slime
 
 		public void Initialize()
 		{
-			AdsManager.Instance.Initialize();
+			if (AdsManager.Instance != null)
+				AdsManager.Instance.Initialize();
 
 			Physics2D.queriesStartInColliders = false;
 #if UNITY_EDITOR
@@ -262,7 +263,7 @@ namespace Slime
 
 			TransitionAnimator.Instance.Show(level.number, () =>
 			{
-				if (showInterstitial)
+				if (showInterstitial && AdsManager.Instance != null)
 					AdsManager.Instance.ShowIntersitial();
 
 				StartCoroutine(LoadSceneEnumerator(scenename));
@@ -334,7 +335,8 @@ namespace Slime
 				popup.Initialize("Purchase Successful", "Ads has been removed.");
 				popup.Show();
 
-				AdsManager.Instance.RemoveAds();
+				if (AdsManager.Instance != null)
+					AdsManager.Instance.RemoveAds();
 
 				GameAnalytics.Instance.TrackRemoveAdsBought((float)product.metadata.localizedPrice);
 			}
