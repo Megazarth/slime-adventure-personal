@@ -1,5 +1,35 @@
 # Changelog for com.google.play.assetdelivery
 
+## [1.9.0] - 2024-02-26
+- Add support for the [showConfirmationDialog() API](https://developer.android.com/reference/com/google/android/play/core/assetpacks/AssetPackManager.html#showConfirmationDialog(androidx.activity.result.ActivityResultLauncher%3Candroidx.activity.result.IntentSenderRequest%3E)), which was added in [v2.2.0 of the Java SDK](https://developer.android.com/reference/com/google/android/play/core/release-notes-asset_delivery#2-2-0).
+
+## [1.8.2] - 2023-03-10
+- Updated Play Common and Play Core dependency from 1.8.1 to 1.8.2
+
+## [1.8.1] - 2022-09-08
+- Updated plugin's data collection procedure. For more information and the opt-out
+  process, please refer to the [data collection](https://github.com/google/play-unity-plugins#data-collection)
+  section in README.
+
+## [1.8.0] - 2022-07-06
+### New Features
+- Migrated to [Play Asset Delivery 2.0.0](https://developer.android.com/reference/com/google/android/play/core/release-notes-asset_delivery#2-0-0).
+
+### Bug Fixes
+- Fixed issue #170: sample files erroneously included in iOS and other non-android platforms
+
+## [1.7.0] - 2022-02-15
+### New Features
+- Incremented version number to match other packages
+
+## [1.6.1] - 2022-01-24
+### New Features
+ - Moved samples to a seperate folder
+
+## [1.6.0] - 2021-11-15
+### Other
+ - Added partial support for newer versions of Unity with an alternative implementation of Play Asset Delivery
+
 ## [1.5.0] - 2021-06-14
 ### New Features
  - Added API and UI options to replace OBB files with an install-time asset pack

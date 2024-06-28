@@ -87,6 +87,20 @@ namespace Google.Android.AppBundle.Editor.Internal
 
             return await appBundleBuilder.CreateBundleWithTask(androidBuildOptions);
         }
+
+        /// <summary>
+        /// Builds an Android App Bundle containing only asset packs.
+        /// </summary>
+        public static async Task BuildAssetOnlyBundle(AssetOnlyBuildOptions assetOnlyBuildOptions)
+        {
+            var appBundleBuilder = CreateAppBundleBuilder();
+            if (!appBundleBuilder.Initialize(new BuildToolLogger()))
+            {
+                throw new Exception("Failed to initialize AppBundleBuilder");
+            }
+
+            await appBundleBuilder.CreateAssetOnlyBundle(assetOnlyBuildOptions);
+        }
 #endif
 
         /// <summary>
@@ -180,7 +194,11 @@ namespace Google.Android.AppBundle.Editor.Internal
             var aabFilePath = buildSettings.buildPlayerOptions.locationPathName;
             if (IsBatchMode || buildSettings.forceSynchronousBuild)
             {
-                var errorMessage = appBundleBuilder.CreateBundle(aabFilePath, buildSettings.assetPackConfig);
+                var createBundleOptions = new CreateBundleOptions
+                {
+                    AabFilePath = aabFilePath, AssetPackConfig = buildSettings.assetPackConfig
+                };
+                var errorMessage = appBundleBuilder.CreateBundle(createBundleOptions);
                 return errorMessage == null;
             }
 
@@ -207,7 +225,12 @@ namespace Google.Android.AppBundle.Editor.Internal
                 runOnDevice
                     ? (AppBundleBuilder.PostBuildCallback) RunBundle
                     : EditorUtility.RevealInFinder;
-            appBundleBuilder.CreateBundleAsync(aabFilePath, assetPackConfig, callback);
+
+            var createBundleOptions = new CreateBundleOptions
+            {
+                AabFilePath = aabFilePath, AssetPackConfig = assetPackConfig
+            };
+            appBundleBuilder.CreateBundleAsync(createBundleOptions, callback);
         }
 
         private static void RunBundle(string aabFile)

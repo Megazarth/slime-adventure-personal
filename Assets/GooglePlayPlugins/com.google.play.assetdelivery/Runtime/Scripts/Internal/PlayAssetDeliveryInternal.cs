@@ -53,6 +53,21 @@ namespace Google.Play.AssetDelivery.Internal
 
         internal PlayAssetBundleRequest RetrieveAssetBundleAsyncInternal(string assetBundleName)
         {
+            var request = InitializeAssetBundleRequest(assetBundleName);
+            InitiateRequest(request.PackRequest);
+
+            return request;
+        }
+
+        internal PlayAssetBundleRequest RetrieveAssetBundleAsyncInternal(string assetBundleName, bool updateIfAvailable)
+        {
+            var request = InitializeAssetBundleRequest(assetBundleName);
+            InitiateRequest(request.PackRequest, updateIfAvailable);
+            return request;
+        }
+
+        private PlayAssetBundleRequestImpl InitializeAssetBundleRequest(string assetBundleName)
+        {
             if (_requestRepository.ContainsRequest(assetBundleName))
             {
                 throw new ArgumentException(string.Format("There is already an active request for AssetBundle: {0}",
@@ -63,38 +78,51 @@ namespace Google.Play.AssetDelivery.Internal
             _requestRepository.AddAssetBundleRequest(request);
             request.Completed += req => _requestRepository.RemoveRequest(assetBundleName);
 
-            InitiateRequest(request.PackRequest);
-
             return request;
         }
 
         internal PlayAssetPackRequest RetrieveAssetPackAsyncInternal(string assetPackName)
         {
-            if (_requestRepository.ContainsAssetBundleRequest(assetPackName))
+            var request = GetExistingAssetPackRequest(assetPackName);
+            if (request != null)
             {
-                throw new ArgumentException(string.Format(
-                    "Cannot create a new PlayAssetPackRequest because there is already an active " +
-                    "PlayAssetBundleRequest for asset bundle: {0}",
-                    assetPackName));
-            }
-
-            PlayAssetPackRequestImpl request;
-            if (_requestRepository.TryGetRequest(assetPackName, out request))
-            {
-                Debug.LogFormat("Returning existing active request for {0}", assetPackName);
                 return request;
             }
 
-            request = CreateAssetPackRequest(assetPackName);
-            _requestRepository.AddRequest(request);
-            request.Completed += req => _requestRepository.RemoveRequest(assetPackName);
-
+            request = InitializeAssetPackRequest(assetPackName);
             InitiateRequest(request);
 
             return request;
         }
 
+        internal PlayAssetPackRequest RetrieveAssetPackAsyncInternal(string assetPackName, bool updateIfAvailable)
+        {
+            var request = GetExistingAssetPackRequest(assetPackName);
+            if (request != null)
+            {
+                return request;
+            }
+
+            request = InitializeAssetPackRequest(assetPackName);
+            InitiateRequest(request, updateIfAvailable);
+
+            return request;
+        }
+
         internal PlayAssetPackBatchRequest RetrieveAssetPackBatchAsyncInternal(IList<string> assetPackNames)
+        {
+            return CreateAndInitiateBatchRequest(assetPackNames, IsDownloaded);
+        }
+
+        internal PlayAssetPackBatchRequest RetrieveAssetPackBatchAsyncInternal(IList<string> assetPackNames,
+            bool updateIfAvailable)
+        {
+            Func<string, bool> useAvailablePack = packName => IsCurrentVersionGoodEnough(packName, updateIfAvailable);
+            return CreateAndInitiateBatchRequest(assetPackNames, useAvailablePack);
+        }
+
+        private PlayAssetPackBatchRequest CreateAndInitiateBatchRequest(IList<string> assetPackNames,
+            Func<string, bool> isPackAvailable)
         {
             if (assetPackNames.Count != assetPackNames.Distinct().Count())
             {
@@ -129,7 +157,7 @@ namespace Google.Play.AssetDelivery.Internal
                 request.Completed += req => _requestRepository.RemoveRequest(request.AssetPackName);
                 requests.Add(request);
 
-                if (IsDownloaded(assetPackName))
+                if (isPackAvailable.Invoke(assetPackName))
                 {
                     request.OnPackAvailable();
                 }
@@ -148,7 +176,7 @@ namespace Google.Play.AssetDelivery.Internal
             });
             fetchTask.RegisterOnFailureCallback((reason, errorCode) =>
             {
-                Debug.LogErrorFormat("Failed to retrieve asset pack batch: {0}", reason);
+                Debug.LogError("Failed to retrieve asset pack batch: " + reason);
                 batchRequest.OnInitializationErrorOccurred(PlayCoreTranslator.TranslatePlayCoreErrorCode(errorCode));
                 fetchTask.Dispose();
             });
@@ -166,6 +194,31 @@ namespace Google.Play.AssetDelivery.Internal
             }
 
             var task = _assetPackManager.ShowCellularDataConfirmation();
+            var operation = new AssetDeliveryAsyncOperation<ConfirmationDialogResult>();
+            task.RegisterOnSuccessCallback(resultCode =>
+            {
+                operation.SetResult(ConvertToConfirmationDialogResult(resultCode));
+                task.Dispose();
+            });
+            task.RegisterOnFailureCallback((message, errorCode) =>
+            {
+                operation.SetError(PlayCoreTranslator.TranslatePlayCoreErrorCode(errorCode));
+                task.Dispose();
+            });
+            return operation;
+        }
+
+        internal PlayAsyncOperation<ConfirmationDialogResult, AssetDeliveryErrorCode>
+            ShowConfirmationDialogInternal()
+        {
+            var requestsAwaitingWifi = _requestRepository.GetRequestsWithStatus(AssetDeliveryStatus.WaitingForWifi);
+            var requestsAwaitingConsent = _requestRepository.GetRequestsWithStatus(AssetDeliveryStatus.RequiresUserConfirmation);
+            if (requestsAwaitingWifi.Count == 0 && requestsAwaitingConsent.Count == 0)
+            {
+                throw new Exception("There are no active requests waiting for confirmation.");
+            }
+
+            var task = _assetPackManager.ShowConfirmationDialog();
             var operation = new AssetDeliveryAsyncOperation<ConfirmationDialogResult>();
             task.RegisterOnSuccessCallback(resultCode =>
             {
@@ -205,6 +258,24 @@ namespace Google.Play.AssetDelivery.Internal
             return operation;
         }
 
+        internal PlayAsyncOperation<IDictionary<string, PlayAssetPackDownloadInfo>, AssetDeliveryErrorCode>
+            GetDownloadInfoInternal(IList<string> assetPackNames)
+        {
+            var operation = new AssetDeliveryAsyncOperation<IDictionary<string, PlayAssetPackDownloadInfo>>();
+
+            var task = _assetPackManager.GetPackStates(assetPackNames.ToArray());
+            task.RegisterOnSuccessCallback(javaPackStates =>
+            {
+                operation.SetResult(PlayAssetPackDownloadInfoImpl.FromAssetPackStates(javaPackStates));
+                task.Dispose();
+            });
+            task.RegisterOnFailureCallback((message, errorCode) =>
+            {
+                operation.SetError(PlayCoreTranslator.TranslatePlayCoreErrorCode(errorCode));
+                task.Dispose();
+            });
+            return operation;
+        }
 
         internal PlayAsyncOperation<VoidResult, AssetDeliveryErrorCode> RemoveAssetPackInternal(
             string assetBundleName)
@@ -230,6 +301,35 @@ namespace Google.Play.AssetDelivery.Internal
             return _assetPackManager.GetAssetLocation(assetBundleName, assetPath);
         }
 
+        private PlayAssetPackRequestImpl GetExistingAssetPackRequest(string assetPackName)
+        {
+            if (_requestRepository.ContainsAssetBundleRequest(assetPackName))
+            {
+                throw new ArgumentException(string.Format(
+                    "Cannot create a new PlayAssetPackRequest because there is already an active " +
+                    "PlayAssetBundleRequest for asset bundle: {0}",
+                    assetPackName));
+            }
+
+            PlayAssetPackRequestImpl request;
+            if (_requestRepository.TryGetRequest(assetPackName, out request))
+            {
+                Debug.Log("Returning existing active request for " + assetPackName);
+            }
+
+            return request;
+        }
+
+        private PlayAssetPackRequestImpl InitializeAssetPackRequest(string assetPackName)
+        {
+            var request = CreateAssetPackRequest(assetPackName);
+            _requestRepository.AddRequest(request);
+            request.Completed += req => _requestRepository.RemoveRequest(assetPackName);
+
+            return request;
+        }
+
+
         private PlayAssetPackRequestImpl CreateAssetPackRequest(string assetPackName)
         {
             return new PlayAssetPackRequestImpl(assetPackName, _assetPackManager, _requestRepository);
@@ -243,7 +343,40 @@ namespace Google.Play.AssetDelivery.Internal
 
         private void InitiateRequest(PlayAssetPackRequestImpl request)
         {
-            if (IsDownloaded(request.AssetPackName))
+            StartRequest(request, IsDownloaded(request.AssetPackName));
+        }
+
+        private void InitiateRequest(PlayAssetPackRequestImpl request, bool updateIfAvailable)
+        {
+            StartRequest(request, IsCurrentVersionGoodEnough(request.AssetPackName, updateIfAvailable));
+        }
+
+        private bool IsCurrentVersionGoodEnough(string assetPackName, bool wantNewerVersion)
+        {
+            var packLocation = _assetPackManager.GetPackLocation(assetPackName);
+            bool isCurrentVersionGoodEnough;
+            if (packLocation == null)
+            {
+                isCurrentVersionGoodEnough= false;
+            }
+            else if (packLocation.PackStorageMethod == AssetPackStorageMethod.ApkAssets)
+            {
+                // If the pack exists as an APK, then it is an install-time pack which cannot be updated.
+                isCurrentVersionGoodEnough = true;
+            }
+            else
+            {
+                // When wantNewerVersion is true,
+                // we can't use the version on disk without checking if a newer version exists.
+                isCurrentVersionGoodEnough = !wantNewerVersion;
+            }
+
+            return isCurrentVersionGoodEnough;
+        }
+
+        private void StartRequest(PlayAssetPackRequestImpl request, bool isAvailable)
+        {
+            if (isAvailable)
             {
                 request.OnPackAvailable();
             }
